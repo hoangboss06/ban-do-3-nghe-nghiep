@@ -72,14 +72,21 @@
     /* =========================================================================
        HEADER BANNER CHÍNH
        ========================================================================= */
-    .top-banner {
+   .top-banner {
       background: linear-gradient(125deg, #0369a1 0%, #0284c7 52%, #4f46e5 100%);
       color: #ffffff;
-      padding: 20px 24px;
+      padding: 16px 20px;
       box-shadow: 0 8px 24px rgba(3, 105, 161, 0.22);
       position: static;
-      top: 0;
-      z-index: 35;
+    }
+
+    @media (max-width: 640px) {
+      .top-banner {
+        padding: 14px 16px;
+      }
+      .banner-inner {
+        gap: 10px;
+      }
     }
 
     .banner-inner {
