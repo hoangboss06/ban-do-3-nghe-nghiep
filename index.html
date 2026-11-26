@@ -1,0 +1,2237 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hoạt Động 5: Bản Đồ 3 Nghề Quan Tâm — THPT Lương Khánh Thiện &amp; TCCN Hải Phòng</title>
+  <style>
+    /* =========================================================================
+       BẢNG MÀU TƯƠI SÁNG, NĂNG ĐỘNG CHO HỌC SINH THPT & MÀN CHIẾU HỘI TRƯỜNG
+       ========================================================================= */
+    :root {
+      --bg-page: #f0f7ff;
+      --bg-card: #ffffff;
+      --bg-soft: #f8fbff;
+      --ink-primary: #0f172a;
+      --ink-secondary: #334155;
+      --ink-muted: #64748b;
+      --border-line: #cbd5e1;
+      --border-soft: #e2e8f0;
+
+      --sky: #0284c7;
+      --sky-dark: #0369a1;
+      --sky-bg: #e0f2fe;
+
+      --indigo: #4f46e5;
+      --indigo-dark: #3730a3;
+      --indigo-bg: #eef2ff;
+
+      --amber: #d97706;
+      --amber-bright: #f59e0b;
+      --amber-bg: #fef3c7;
+
+      --emerald: #059669;
+      --emerald-dark: #047857;
+      --emerald-bg: #d1fae5;
+
+      --rose: #e11d48;
+      --rose-dark: #be123c;
+      --rose-bg: #ffe4e6;
+
+      --shadow-card: 0 10px 26px rgba(15, 23, 42, 0.06);
+      --shadow-pop: 0 20px 44px rgba(15, 23, 42, 0.16);
+      --r-xl: 24px;
+      --r-lg: 18px;
+      --r-md: 12px;
+      --r-sm: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    html, body {
+      min-height: 100%;
+      font-family: "Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(165deg, #e0f2fe 0%, #f8fafc 48%, #eef2ff 100%);
+      color: var(--ink-primary);
+      line-height: 1.48;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button, input, textarea {
+      font-family: inherit;
+    }
+
+    /* =========================================================================
+       HEADER BANNER CHÍNH
+       ========================================================================= */
+    .top-banner {
+      background: linear-gradient(125deg, #0369a1 0%, #0284c7 52%, #4f46e5 100%);
+      color: #ffffff;
+      padding: 20px 24px;
+      box-shadow: 0 8px 24px rgba(3, 105, 161, 0.22);
+      position: sticky;
+      top: 0;
+      z-index: 35;
+    }
+
+    .banner-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .banner-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .school-badge {
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 999px;
+    }
+
+    .mode-badge {
+      background: #fde047;
+      color: #0f172a;
+      font-size: 13px;
+      font-weight: 900;
+      padding: 4px 12px;
+      border-radius: 999px;
+    }
+
+    .banner-title {
+      font-size: clamp(22px, 2.7vw, 32px);
+      font-weight: 900;
+      letter-spacing: -0.3px;
+      line-height: 1.18;
+      color: #ffffff;
+    }
+
+    .banner-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sheet-status-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 800;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.35);
+      color: #fef08a;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .sheet-status-chip.is-linked {
+      background: #d1fae5;
+      color: #065f46;
+      border-color: #6ee7b7;
+    }
+
+    /* =========================================================================
+       NÚT BẤM TIÊU CHUẨN
+       ========================================================================= */
+    .btn {
+      border: none;
+      border-radius: var(--r-md);
+      padding: 11px 18px;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: transform 0.12s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+      user-select: none;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn-sm {
+      padding: 8px 13px;
+      font-size: 14px;
+      border-radius: var(--r-sm);
+    }
+
+    .btn-lg {
+      padding: 15px 28px;
+      font-size: 18px;
+      border-radius: var(--r-lg);
+    }
+
+    .btn-white {
+      background: #ffffff;
+      color: var(--ink-primary);
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.14);
+    }
+
+    .btn-white:hover {
+      background: #f1f5f9;
+    }
+
+    .btn-sky {
+      background: var(--sky);
+      color: #ffffff;
+      box-shadow: 0 6px 16px rgba(2, 132, 199, 0.25);
+    }
+
+    .btn-sky:hover {
+      background: var(--sky-dark);
+    }
+
+    .btn-indigo {
+      background: var(--indigo);
+      color: #ffffff;
+      box-shadow: 0 6px 16px rgba(79, 70, 229, 0.25);
+    }
+
+    .btn-indigo:hover {
+      background: var(--indigo-dark);
+    }
+
+    .btn-emerald {
+      background: var(--emerald);
+      color: #ffffff;
+      box-shadow: 0 8px 20px rgba(5, 150, 105, 0.28);
+    }
+
+    .btn-emerald:hover {
+      background: var(--emerald-dark);
+    }
+
+    .btn-amber {
+      background: var(--amber-bright);
+      color: var(--ink-primary);
+      box-shadow: 0 6px 16px rgba(245, 158, 11, 0.28);
+    }
+
+    .btn-amber:hover {
+      background: var(--amber);
+      color: #ffffff;
+    }
+
+    .btn-outline {
+      background: #ffffff;
+      color: var(--ink-primary);
+      border: 2px solid var(--border-line);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--sky);
+      background: var(--bg-soft);
+    }
+
+    /* =========================================================================
+       KHUNG NỘI DUNG CHÍNH & CÁC THẺ KHẢO SÁT
+       ========================================================================= */
+    .main-container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 24px 20px 44px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .intro-strip {
+      background: var(--bg-card);
+      border: 2px solid #bae6fd;
+      border-left: 8px solid var(--sky);
+      border-radius: var(--r-xl);
+      padding: 18px 24px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .intro-text {
+      font-size: 16px;
+      color: var(--ink-secondary);
+      max-width: 820px;
+    }
+
+    .intro-text strong {
+      color: var(--ink-primary);
+    }
+
+    .progress-pill {
+      background: var(--indigo-bg);
+      color: var(--indigo-dark);
+      font-size: 15px;
+      font-weight: 900;
+      padding: 8px 16px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .survey-card {
+      background: var(--bg-card);
+      border: 2px solid var(--border-soft);
+      border-radius: var(--r-xl);
+      padding: 26px 28px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      transition: border-color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .survey-card.has-error {
+      border-color: var(--rose);
+      box-shadow: 0 0 0 4px rgba(225, 29, 72, 0.12), var(--shadow-card);
+    }
+
+    @media (max-width: 680px) {
+      .survey-card {
+        padding: 20px 16px;
+      }
+      .top-banner {
+        padding: 16px;
+      }
+    }
+
+    .card-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .step-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 5px 13px;
+      border-radius: 999px;
+      background: var(--sky-bg);
+      color: var(--sky-dark);
+    }
+
+    .step-badge.indigo {
+      background: var(--indigo-bg);
+      color: var(--indigo-dark);
+    }
+
+    .step-badge.amber {
+      background: var(--amber-bg);
+      color: #92400e;
+    }
+
+    .step-badge.emerald {
+      background: var(--emerald-bg);
+      color: var(--emerald-dark);
+    }
+
+    .card-title {
+      font-size: clamp(20px, 2.2vw, 25px);
+      font-weight: 900;
+      color: var(--ink-primary);
+      margin-top: 6px;
+    }
+
+    .card-desc {
+      font-size: 16px;
+      color: var(--ink-secondary);
+    }
+
+    .req-star {
+      color: var(--rose);
+      font-weight: 900;
+    }
+
+    .field-error-msg {
+      display: none;
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--rose-dark);
+      background: var(--rose-bg);
+      border: 1.5px solid #fda4af;
+      border-radius: var(--r-sm);
+      padding: 8px 12px;
+    }
+
+    .field-error-msg.visible {
+      display: block;
+    }
+
+    /* =========================================================================
+       PHẦN 1: THÔNG TIN HỌC SINH (BẮT BUỘC TRƯỚC KHI KHẢO SÁT)
+       ========================================================================= */
+    .student-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 0.8fr 1fr;
+      gap: 18px;
+    }
+
+    @media (max-width: 820px) {
+      .student-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .form-label {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--ink-primary);
+    }
+
+    .text-input, .short-input {
+      width: 100%;
+      border: 2px solid var(--border-line);
+      border-radius: var(--r-md);
+      padding: 12px 15px;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--ink-primary);
+      background: var(--bg-soft);
+      transition: border-color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .text-input:focus, .short-input:focus {
+      outline: none;
+      border-color: var(--sky);
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.16);
+    }
+
+    .input-invalid {
+      border-color: var(--rose) !important;
+      background: #fff1f2 !important;
+    }
+
+    /* =========================================================================
+       BƯỚC 1: 6 NHÓM SỞ THÍCH (BẮT BUỘC CHỌN ĐÚNG 2)
+       ========================================================================= */
+    .interest-counter-pill {
+      font-size: 15px;
+      font-weight: 900;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: var(--amber-bg);
+      color: #92400e;
+      border: 1.5px solid #fcd34d;
+    }
+
+    .interest-counter-pill.is-exact {
+      background: var(--emerald-bg);
+      color: var(--emerald-dark);
+      border-color: #6ee7b7;
+    }
+
+    .interests-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    @media (max-width: 760px) {
+      .interests-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .interest-tile {
+      border: 2.5px solid var(--border-line);
+      background: var(--bg-soft);
+      border-radius: var(--r-lg);
+      padding: 16px 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-align: left;
+      transition: all 0.14s ease;
+      user-select: none;
+    }
+
+    .interest-tile:hover {
+      border-color: var(--sky);
+      background: #f0f9ff;
+      transform: translateY(-1px);
+    }
+
+    .interest-tile.is-selected {
+      border-color: var(--indigo);
+      background: var(--indigo-bg);
+      box-shadow: 0 6px 16px rgba(79, 70, 229, 0.16);
+    }
+
+    .interest-check-box {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      border: 2.5px solid #94a3b8;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 900;
+      color: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .interest-tile.is-selected .interest-check-box {
+      background: var(--indigo);
+      border-color: var(--indigo);
+    }
+
+    .interest-label-txt {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--ink-primary);
+      line-height: 1.35;
+    }
+
+    /* =========================================================================
+       BƯỚC 2: KHUNG PROMPT MẪU + ĐIỀN NHANH + CÂU TRẢ LỜI NGẮN BẮT BUỘC
+       ========================================================================= */
+    .prompt-template-box {
+      background: linear-gradient(135deg, #eef2ff 0%, #e0f2fe 100%);
+      border: 2px solid #93c5fd;
+      border-left: 8px solid var(--indigo);
+      border-radius: var(--r-lg);
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .prompt-template-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .prompt-template-tag {
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--indigo-dark);
+    }
+
+    .prompt-template-quote {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--ink-primary);
+      line-height: 1.5;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: var(--r-md);
+      padding: 14px 16px;
+      border: 1px solid #bfdbfe;
+    }
+
+    .prompt-helper-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    @media (max-width: 820px) {
+      .prompt-helper-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .live-prompt-box {
+      background: #0f172a;
+      color: #f8fafc;
+      border-radius: var(--r-md);
+      padding: 14px 16px;
+      font-size: 15px;
+      line-height: 1.48;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .live-prompt-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .live-prompt-label {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: #fde047;
+    }
+
+    /* =========================================================================
+       BƯỚC 3: 3 NGHỀ NGHIỆP (MỖI NGHỀ 4 CÂU TRẢ LỜI NGẮN BẮT BUỘC)
+       ========================================================================= */
+    .careers-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .career-block {
+      background: var(--bg-soft);
+      border: 2px solid #cbd5e1;
+      border-radius: var(--r-lg);
+      padding: 20px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .career-block.has-error {
+      border-color: var(--rose);
+      background: #fffafb;
+    }
+
+    .career-block-title {
+      font-size: 19px;
+      font-weight: 900;
+      color: var(--sky-dark);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .career-fields-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    @media (max-width: 760px) {
+      .career-fields-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* =========================================================================
+       KHU VỰC NỘP BÀI
+       ========================================================================= */
+    .submit-panel {
+      background: var(--bg-card);
+      border: 2.5px solid #a7f3d0;
+      border-radius: var(--r-xl);
+      padding: 24px 28px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    /* =========================================================================
+       THẺ XÁC NHẬN "BẢN ĐỒ 3 NGHỀ TÔI QUAN TÂM" SAU KHI GỬI
+       ========================================================================= */
+    .result-map-section {
+      display: none;
+      background: var(--bg-card);
+      border: 3px solid var(--emerald);
+      border-radius: var(--r-xl);
+      padding: 28px 30px;
+      box-shadow: var(--shadow-pop);
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .result-map-section.visible {
+      display: flex;
+      animation: fadeInUp 0.25s ease;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .notice-banner {
+      border-radius: var(--r-md);
+      padding: 14px 18px;
+      font-size: 15px;
+      font-weight: 700;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .notice-banner.success {
+      background: var(--emerald-bg);
+      color: var(--emerald-dark);
+      border: 1.5px solid #6ee7b7;
+    }
+
+    .notice-banner.warn {
+      background: var(--amber-bg);
+      color: #92400e;
+      border: 1.5px solid #fcd34d;
+    }
+
+    .map-poster-header {
+      background: linear-gradient(125deg, #0369a1 0%, #4f46e5 100%);
+      color: #ffffff;
+      border-radius: var(--r-lg);
+      padding: 22px 26px;
+    }
+
+    .map-poster-title {
+      font-size: clamp(24px, 2.8vw, 34px);
+      font-weight: 900;
+      letter-spacing: 0.3px;
+    }
+
+    .map-student-meta {
+      margin-top: 8px;
+      font-size: 17px;
+      font-weight: 700;
+      color: #e0f2fe;
+    }
+
+    .map-interests-line {
+      margin-top: 8px;
+      font-size: 16px;
+      font-weight: 700;
+      color: #fde047;
+    }
+
+    .map-3careers-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    @media (max-width: 960px) {
+      .map-3careers-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .map-career-card {
+      background: var(--bg-soft);
+      border: 2px solid #bae6fd;
+      border-top: 6px solid var(--sky);
+      border-radius: var(--r-lg);
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .map-career-card:nth-child(2) {
+      border-top-color: var(--indigo);
+    }
+
+    .map-career-card:nth-child(3) {
+      border-top-color: var(--emerald);
+    }
+
+    .map-career-idx {
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: var(--sky-dark);
+    }
+
+    .map-career-name {
+      font-size: 21px;
+      font-weight: 900;
+      color: var(--ink-primary);
+    }
+
+    .map-career-row {
+      font-size: 15px;
+      color: var(--ink-secondary);
+      line-height: 1.42;
+    }
+
+    .map-career-row strong {
+      color: var(--ink-primary);
+    }
+
+    .map-next-step-box {
+      background: var(--indigo-bg);
+      border: 2px solid #c7d2fe;
+      border-left: 7px solid var(--indigo);
+      border-radius: var(--r-md);
+      padding: 16px 20px;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    .raw-payload-box {
+      display: none;
+      background: #0f172a;
+      color: #e2e8f0;
+      border-radius: var(--r-md);
+      padding: 16px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 13px;
+      line-height: 1.45;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .raw-payload-box.visible {
+      display: block;
+    }
+
+    /* =========================================================================
+       MODAL CẤU HÌNH GOOGLE SHEET (GV/MC)
+       ========================================================================= */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.62);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      z-index: 60;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-panel {
+      background: #ffffff;
+      border-radius: var(--r-xl);
+      width: 100%;
+      max-width: 860px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 26px 28px;
+      box-shadow: var(--shadow-pop);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .modal-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 1.5px solid var(--border-soft);
+      padding-bottom: 14px;
+    }
+
+    .modal-title {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--ink-primary);
+    }
+
+    .script-code-pre {
+      background: #0f172a;
+      color: #f1f5f9;
+      border-radius: var(--r-md);
+      padding: 16px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 13px;
+      line-height: 1.45;
+      max-height: 290px;
+      overflow: auto;
+      white-space: pre;
+    }
+
+    /* =========================================================================
+       FOOTER NHỎ GỌN TIẾNG VIỆT & TOAST
+       ========================================================================= */
+    .page-footer {
+      max-width: 1180px;
+      margin: 0 auto 30px;
+      padding: 0 20px;
+      font-size: 13px;
+      color: var(--ink-muted);
+      text-align: center;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 22px;
+      right: 22px;
+      background: var(--ink-primary);
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 800;
+      padding: 12px 18px;
+      border-radius: var(--r-md);
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.28);
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      z-index: 80;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =======================================================================
+       HEADER BANNER
+       ======================================================================= -->
+  <header class="top-banner">
+    <div class="banner-inner">
+      <div>
+        <div class="banner-meta">
+          <span class="school-badge">Trường THPT Lương Khánh Thiện &amp; TCCN Hải Phòng • Khám phá cá nhân + AI</span>
+          <span class="mode-badge">33–47 phút • Cá nhân + AI</span>
+        </div>
+        <h1 class="banner-title">HOẠT ĐỘNG 5: BẢN ĐỒ 3 NGHỀ QUAN TÂM</h1>
+      </div>
+
+      <div class="banner-actions">
+        <span id="sheetStatusChip" class="sheet-status-chip">Chưa liên kết Google Sheet</span>
+        <button id="btnOpenSheetModal" type="button" class="btn btn-white btn-sm">
+          ⚙ Cấu hình Google Sheet (GV/MC)
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-container">
+    <!-- Thanh giới thiệu ngắn & tiến độ hoàn thành -->
+    <section class="intro-strip" aria-label="Hướng dẫn hoạt động">
+      <p class="intro-text">
+        <strong>Thử thách lớn:</strong> Mỗi học sinh tự xây dựng <strong>Bản đồ 3 nghề quan tâm</strong> của riêng mình. Không cần chọn nghề chắc chắn theo đuổi — mục đích là mở rộng góc nhìn để em tiếp tục tìm hiểu.
+      </p>
+      <span id="progressCounter" class="progress-pill">Hoàn thành: 0 / 16 mục bắt buộc</span>
+    </section>
+
+    <form id="careerSurveyForm" novalidate>
+      <!-- ===================================================================
+           1. THÔNG TIN HỌC SINH (BẮT BUỘC TRƯỚC KHI KHẢO SÁT)
+           =================================================================== -->
+      <section id="cardStudentInfo" class="survey-card" aria-labelledby="titleStudentInfo">
+        <div>
+          <span class="step-badge">Phần mở đầu • Bắt buộc</span>
+          <h2 id="titleStudentInfo" class="card-title">1. Thông tin học sinh</h2>
+          <p class="card-desc">Vui lòng điền đầy đủ thông tin cá nhân trước khi bắt đầu khảo sát.</p>
+        </div>
+
+        <div class="student-grid">
+          <div class="form-group">
+            <label for="studentName" class="form-label">Họ và tên <span class="req-star">*</span></label>
+            <input id="studentName" name="studentName" type="text" class="text-input" placeholder="Ví dụ: Nguyễn Minh Anh" required />
+          </div>
+
+          <div class="form-group">
+            <label for="studentClass" class="form-label">Lớp <span class="req-star">*</span></label>
+            <input id="studentClass" name="studentClass" type="text" class="text-input" placeholder="Ví dụ: 10A1, 11A2, 12T1" required />
+          </div>
+
+          <div class="form-group">
+            <label for="studentDob" class="form-label">Ngày sinh <span class="req-star">*</span></label>
+            <input id="studentDob" name="studentDob" type="date" class="text-input" required />
+          </div>
+        </div>
+
+        <div id="errStudentInfo" class="field-error-msg" role="alert"></div>
+      </section>
+
+      <!-- ===================================================================
+           2. BƯỚC 1 – KHÁM PHÁ BẢN THÂN (BẮT BUỘC CHỌN ĐÚNG 2 TRONG 6 NHÓM)
+           =================================================================== -->
+      <section id="cardStep1" class="survey-card" aria-labelledby="titleStep1">
+        <div class="card-head">
+          <div>
+            <span class="step-badge indigo">Bước 1 • Khám phá bản thân</span>
+            <h2 id="titleStep1" class="card-title">Chọn đúng 2 nhóm sở thích phù hợp nhất với em <span class="req-star">*</span></h2>
+            <p class="card-desc">Chỉ được chọn tối đa <strong>2</strong> nhóm (nhấp lại nhóm đã chọn để bỏ chọn).</p>
+          </div>
+          <span id="interestCounter" class="interest-counter-pill">Đã chọn: 0 / 2</span>
+        </div>
+
+        <div id="interestsGrid" class="interests-grid" role="group" aria-label="6 nhóm sở thích"></div>
+
+        <div id="errStep1" class="field-error-msg" role="alert"></div>
+      </section>
+
+      <!-- ===================================================================
+           3. BƯỚC 2 – AI GỢI Ý NGHỀ NGHIỆP (PROMPT MẪU + CÂU TRẢ LỜI NGẮN)
+           =================================================================== -->
+      <section id="cardStep2" class="survey-card" aria-labelledby="titleStep2">
+        <div>
+          <span class="step-badge amber">Bước 2 • AI gợi ý nghề nghiệp</span>
+          <h2 id="titleStep2" class="card-title">Dùng Prompt khám phá nghề &amp; ghi câu trả lời ngắn của em</h2>
+          <p class="card-desc">Em có thể điền nhanh các chỗ trống bên dưới để tạo Prompt đầy đủ, dán vào AI (ChatGPT/Gemini), rồi ghi câu trả lời ngắn phù hợp.</p>
+        </div>
+
+        <div class="prompt-template-box">
+          <div class="prompt-template-header">
+            <span class="prompt-template-tag">Prompt mẫu đề xuất</span>
+            <button id="btnCopyTemplatePrompt" type="button" class="btn btn-indigo btn-sm">
+              📋 Sao chép Prompt mẫu
+            </button>
+          </div>
+          <p id="templatePromptText" class="prompt-template-quote">
+            "Tôi là học sinh THPT tại Hải Phòng. Tôi thích [sở thích], có điểm mạnh [điểm mạnh] và quan tâm đến [lĩnh vực]. Hãy gợi ý 5 nghề nghiệp phù hợp với tôi trong tương lai. Với mỗi nghề, hãy trình bày: công việc chính, kỹ năng cần có, cách AI có thể hỗ trợ nghề đó, những thách thức và cơ hội phát triển. Hãy giải thích dễ hiểu, không khẳng định rằng tôi chắc chắn phù hợp với nghề nào."
+          </p>
+        </div>
+
+        <div class="prompt-helper-grid">
+          <div class="form-group">
+            <label for="helperInterest" class="form-label">[sở thích] (gợi ý điền nhanh)</label>
+            <input id="helperInterest" type="text" class="text-input" placeholder="Ví dụ: thiết kế, phân tích dữ liệu..." />
+          </div>
+          <div class="form-group">
+            <label for="helperStrength" class="form-label">[điểm mạnh] (gợi ý điền nhanh)</label>
+            <input id="helperStrength" type="text" class="text-input" placeholder="Ví dụ: tỉ mỉ, giao tiếp tốt..." />
+          </div>
+          <div class="form-group">
+            <label for="helperField" class="form-label">[lĩnh vực] (gợi ý điền nhanh)</label>
+            <input id="helperField" type="text" class="text-input" placeholder="Ví dụ: logistics, công nghệ, truyền thông..." />
+          </div>
+        </div>
+
+        <div class="live-prompt-box">
+          <div class="live-prompt-top">
+            <span class="live-prompt-label">Prompt đã điền sẵn để dán vào AI</span>
+            <button id="btnCopyGeneratedPrompt" type="button" class="btn btn-amber btn-sm">
+              📋 Sao chép Prompt đã điền
+            </button>
+          </div>
+          <p id="generatedPromptPreview"></p>
+        </div>
+
+        <div class="form-group">
+          <label for="step2ShortAnswer" class="form-label">
+            Câu trả lời ngắn của em (từ gợi ý AI / điều em rút ra sau khi khám phá nghề) <span class="req-star">*</span>
+          </label>
+          <input
+            id="step2ShortAnswer"
+            name="step2ShortAnswer"
+            type="text"
+            class="short-input"
+            placeholder="Ví dụ: AI gợi ý 5 nghề về dữ liệu và thiết kế sản phẩm; mình thấy thú vị với nhóm phân tích dữ liệu ứng dụng."
+            required
+          />
+        </div>
+
+        <div id="errStep2" class="field-error-msg" role="alert"></div>
+      </section>
+
+      <!-- ===================================================================
+           4. BƯỚC 3 – CHỌN 3 NGHỀ VÀ HOÀN THÀNH BẢN ĐỒ (4 Ý NGẮN / NGHỀ)
+           =================================================================== -->
+      <section id="cardStep3" class="survey-card" aria-labelledby="titleStep3">
+        <div>
+          <span class="step-badge emerald">Bước 3 • Chọn 3 nghề và hoàn thành bản đồ</span>
+          <h2 id="titleStep3" class="card-title">Điền đủ 4 câu trả lời ngắn cho cả 3 nghề em quan tâm <span class="req-star">*</span></h2>
+          <p class="card-desc">Mỗi nghề cần nhập ngắn gọn, rõ ý đủ 4 mục: Tên nghề, Lý do quan tâm, Kỹ năng quan trọng, và Cách AI hỗ trợ.</p>
+        </div>
+
+        <div id="careersContainer" class="careers-stack"></div>
+
+        <div id="errStep3" class="field-error-msg" role="alert"></div>
+      </section>
+
+      <!-- ===================================================================
+           5. BƯỚC TIẾP THEO CỦA TÔI (BẮT BUỘC CÂU TRẢ LỜI NGẮN)
+           =================================================================== -->
+      <section id="cardNextStep" class="survey-card" aria-labelledby="titleNextStep">
+        <div>
+          <span class="step-badge">Chốt hành động cá nhân • Bắt buộc</span>
+          <h2 id="titleNextStep" class="card-title">Bước tiếp theo của tôi <span class="req-star">*</span></h2>
+          <p class="card-desc">Ghi ngắn gọn một việc hoặc một kỹ năng em sẽ bắt đầu tìm hiểu/rèn luyện sau buổi học hôm nay.</p>
+        </div>
+
+        <div class="form-group">
+          <label for="nextStepAnswer" class="form-label">
+            Hành động / kỹ năng tiếp theo của em <span class="req-star">*</span>
+          </label>
+          <input
+            id="nextStepAnswer"
+            name="nextStepAnswer"
+            type="text"
+            class="short-input"
+            placeholder="Ví dụ: Tìm hiểu thêm 2 ngành đào tạo tại Hải Phòng và luyện kỹ năng trình bày dữ liệu cơ bản."
+            required
+          />
+        </div>
+
+        <div id="errNextStep" class="field-error-msg" role="alert"></div>
+      </section>
+
+      <!-- Khu vực nút gửi khảo sát -->
+      <div class="submit-panel">
+        <div>
+          <strong style="font-size: 18px; color: var(--ink-primary);">Hoàn tất Bản đồ 3 nghề quan tâm</strong>
+          <p style="font-size: 15px; color: var(--ink-secondary);">
+            Sau khi gửi, bản đồ cá nhân của em sẽ hiển thị ngay bên dưới và gửi tới Google Sheet (nếu GV/MC đã cấu hình link).
+          </p>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+          <button id="btnClearDraft" type="button" class="btn btn-outline">Xóa bản nháp</button>
+          <button id="btnSubmitSurvey" type="submit" class="btn btn-emerald btn-lg">
+            🚀 Gửi Bản Đồ Nghề Nghiệp
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <!-- =====================================================================
+         THẺ XÁC NHẬN "BẢN ĐỒ 3 NGHỀ TÔI QUAN TÂM" SAU KHI NỘP
+         ===================================================================== -->
+    <section id="resultMapSection" class="result-map-section" aria-live="polite">
+      <div id="submitNoticeBanner" class="notice-banner success"></div>
+
+      <div class="map-poster-header">
+        <div class="map-poster-title">BẢN ĐỒ 3 NGHỀ TÔI QUAN TÂM</div>
+        <div id="resultStudentMeta" class="map-student-meta"></div>
+        <div id="resultInterestsLine" class="map-interests-line"></div>
+      </div>
+
+      <div id="resultCareersGrid" class="map-3careers-grid"></div>
+
+      <div id="resultNextStepBox" class="map-next-step-box"></div>
+
+      <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px;">
+        <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+          <button id="btnNewOrEditMap" type="button" class="btn btn-sky">
+            ✏️ Gửi lại / Tạo bản đồ mới
+          </button>
+          <button id="btnToggleRawPayload" type="button" class="btn btn-outline">
+            { } Xem / Sao chép dữ liệu gửi Google Sheet
+          </button>
+          <button id="btnCopyPayloadJson" type="button" class="btn btn-indigo btn-sm">
+            📋 Sao chép JSON
+          </button>
+        </div>
+      </div>
+
+      <pre id="rawPayloadBox" class="raw-payload-box"></pre>
+    </section>
+  </main>
+
+  <!-- =======================================================================
+       MODAL CẤU HÌNH GOOGLE SHEET (GV/MC)
+       ======================================================================= -->
+  <div id="sheetConfigModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="sheetModalTitle">
+    <div class="modal-panel">
+      <div class="modal-top">
+        <h2 id="sheetModalTitle" class="modal-title">Cấu hình Google Sheet (GV/MC)</h2>
+        <button id="btnCloseSheetModal" type="button" class="btn btn-outline btn-sm">✕ Đóng</button>
+      </div>
+
+      <div class="form-group">
+        <label for="appsScriptUrlInput" class="form-label">
+          Google Apps Script Web App URL (<code>https://script.google.com/macros/s/.../exec</code>)
+        </label>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+          <input
+            id="appsScriptUrlInput"
+            type="url"
+            class="text-input"
+            style="flex: 1 1 380px;"
+            placeholder="https://script.google.com/macros/s/AKfycb.../exec"
+          />
+          <button id="btnSaveWebhookUrl" type="button" class="btn btn-emerald">Lưu URL</button>
+          <button id="btnClearWebhookUrl" type="button" class="btn btn-outline btn-sm">Xóa URL</button>
+        </div>
+        <span style="font-size: 13px; color: var(--ink-muted);">
+          URL được lưu trên trình duyệt máy này (<code>localStorage</code>). Khi gửi khảo sát, dữ liệu sẽ gửi dạng JSON qua <code>POST</code> (<code>mode: 'no-cors'</code>).
+        </span>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px;">
+        <strong style="font-size: 16px; color: var(--ink-primary);">
+          Mã Google Apps Script mẫu (ghi vào sheet tab <code>BanDo3Nghe</code>)
+        </strong>
+        <button id="btnCopyAppsScript" type="button" class="btn btn-indigo btn-sm">
+          📋 Sao chép mã Apps Script
+        </button>
+      </div>
+
+      <pre id="appsScriptCodeBlock" class="script-code-pre"></pre>
+
+      <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; border-top: 1.5px solid var(--border-soft); padding-top: 14px;">
+        <span id="localSubmissionsCount" style="font-size: 14px; font-weight: 700; color: var(--ink-secondary);">
+          Đã lưu cục bộ trên máy: 0 bản ghi
+        </span>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+          <button id="btnExportCsv" type="button" class="btn btn-sky btn-sm">⬇ Tải CSV các bài đã gửi</button>
+          <button id="btnClearLocalHistory" type="button" class="btn btn-outline btn-sm">Xóa lịch sử cục bộ</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer tiếng Việt nhỏ gọn -->
+  <footer class="page-footer">
+    Bản thiết kế minh họa dựa trên kế hoạch dạy học; cần cấu hình link Google Apps Script để ghi dữ liệu trực tiếp vào Google Sheet.
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    (function () {
+      "use strict";
+
+      /* =====================================================================
+         HẰNG SỐ & DỮ LIỆU CHUẨN THEO KẾ HOẠCH BÀI DẠY
+         ===================================================================== */
+      const STORAGE_KEYS = {
+        webhookUrl: "lkt_act5_apps_script_url_v1",
+        draft: "lkt_act5_survey_draft_v1",
+        submissions: "lkt_act5_local_submissions_v1"
+      };
+
+      const INTEREST_GROUPS = [
+        "Thích giao tiếp, giúp đỡ người khác.",
+        "Thích tính toán, phân tích và xử lý dữ liệu.",
+        "Thích sáng tạo, thiết kế và nghệ thuật.",
+        "Thích máy móc, công nghệ và kỹ thuật.",
+        "Thích khám phá thiên nhiên, môi trường.",
+        "Thích tổ chức, lãnh đạo và kinh doanh."
+      ];
+
+      const PROMPT_TEMPLATE_RAW =
+        "Tôi là học sinh THPT tại Hải Phòng. Tôi thích [sở thích], có điểm mạnh [điểm mạnh] và quan tâm đến [lĩnh vực]. Hãy gợi ý 5 nghề nghiệp phù hợp với tôi trong tương lai. Với mỗi nghề, hãy trình bày: công việc chính, kỹ năng cần có, cách AI có thể hỗ trợ nghề đó, những thách thức và cơ hội phát triển. Hãy giải thích dễ hiểu, không khẳng định rằng tôi chắc chắn phù hợp với nghề nào.";
+
+      const APPS_SCRIPT_SAMPLE = `function doPost(e) {
+  try {
+    var sheetName = "BanDo3Nghe";
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var sheet = ss.getSheetByName(sheetName);
+    if (!sheet) {
+      sheet = ss.insertSheet(sheetName);
+    }
+
+    var headers = [
+      "Timestamp",
+      "HoVaTen",
+      "Lop",
+      "NgaySinh",
+      "NhomSoThich_1",
+      "NhomSoThich_2",
+      "SoThichPrompt",
+      "DiemManhPrompt",
+      "LinhVucPrompt",
+      "PromptDayDu",
+      "TraLoiNganBuoc2",
+      "Nghe1_Ten",
+      "Nghe1_LyDo",
+      "Nghe1_KyNang",
+      "Nghe1_AIHoTro",
+      "Nghe2_Ten",
+      "Nghe2_LyDo",
+      "Nghe2_KyNang",
+      "Nghe2_AIHoTro",
+      "Nghe3_Ten",
+      "Nghe3_LyDo",
+      "Nghe3_KyNang",
+      "Nghe3_AIHoTro",
+      "BuocTiepTheoCuaToi"
+    ];
+
+    if (sheet.getLastRow() === 0) {
+      sheet.appendRow(headers);
+    }
+
+    var data = JSON.parse(e.postData.contents || "{}");
+    var interests = Array.isArray(data.selectedInterests) ? data.selectedInterests : [];
+    var c1 = (data.careers && data.careers[0]) || {};
+    var c2 = (data.careers && data.careers[1]) || {};
+    var c3 = (data.careers && data.careers[2]) || {};
+
+    sheet.appendRow([
+      data.timestamp || new Date().toISOString(),
+      data.fullName || "",
+      data.className || "",
+      data.dob || "",
+      interests[0] || "",
+      interests[1] || "",
+      data.promptInputs ? data.promptInputs.interest : "",
+      data.promptInputs ? data.promptInputs.strength : "",
+      data.promptInputs ? data.promptInputs.field : "",
+      data.generatedPrompt || "",
+      data.step2ShortAnswer || "",
+      c1.name || "",
+      c1.reason || "",
+      c1.skill || "",
+      c1.aiSupport || "",
+      c2.name || "",
+      c2.reason || "",
+      c2.skill || "",
+      c2.aiSupport || "",
+      c3.name || "",
+      c3.reason || "",
+      c3.skill || "",
+      c3.aiSupport || "",
+      data.nextStep || ""
+    ]);
+
+    return ContentService
+      .createTextOutput(JSON.stringify({ status: "ok" }))
+      .setMimeType(ContentService.MimeType.JSON);
+  } catch (err) {
+    return ContentService
+      .createTextOutput(JSON.stringify({ status: "error", message: err.message }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}`;
+
+      /* =====================================================================
+         TRẠNG THÁI ỨNG DỤNG
+         ===================================================================== */
+      const state = {
+        selectedInterests: [],
+        lastSubmittedPayload: null
+      };
+
+      /* =====================================================================
+         THAM CHIẾU DOM
+         ===================================================================== */
+      const formEl = document.getElementById("careerSurveyForm");
+      const studentNameEl = document.getElementById("studentName");
+      const studentClassEl = document.getElementById("studentClass");
+      const studentDobEl = document.getElementById("studentDob");
+
+      const interestsGridEl = document.getElementById("interestsGrid");
+      const interestCounterEl = document.getElementById("interestCounter");
+      const progressCounterEl = document.getElementById("progressCounter");
+
+      const helperInterestEl = document.getElementById("helperInterest");
+      const helperStrengthEl = document.getElementById("helperStrength");
+      const helperFieldEl = document.getElementById("helperField");
+      const generatedPromptPreviewEl = document.getElementById("generatedPromptPreview");
+      const step2ShortAnswerEl = document.getElementById("step2ShortAnswer");
+
+      const careersContainerEl = document.getElementById("careersContainer");
+      const nextStepAnswerEl = document.getElementById("nextStepAnswer");
+
+      const resultMapSectionEl = document.getElementById("resultMapSection");
+      const submitNoticeBannerEl = document.getElementById("submitNoticeBanner");
+      const resultStudentMetaEl = document.getElementById("resultStudentMeta");
+      const resultInterestsLineEl = document.getElementById("resultInterestsLine");
+      const resultCareersGridEl = document.getElementById("resultCareersGrid");
+      const resultNextStepBoxEl = document.getElementById("resultNextStepBox");
+      const rawPayloadBoxEl = document.getElementById("rawPayloadBox");
+
+      const sheetConfigModalEl = document.getElementById("sheetConfigModal");
+      const appsScriptUrlInputEl = document.getElementById("appsScriptUrlInput");
+      const appsScriptCodeBlockEl = document.getElementById("appsScriptCodeBlock");
+      const sheetStatusChipEl = document.getElementById("sheetStatusChip");
+      const localSubmissionsCountEl = document.getElementById("localSubmissionsCount");
+
+      const toastEl = document.getElementById("toast");
+      let toastTimer = null;
+
+      /* =====================================================================
+         TIỆN ÍCH CHUNG
+         ===================================================================== */
+      function showToast(msg) {
+        toastEl.textContent = msg;
+        toastEl.classList.add("show");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          toastEl.classList.remove("show");
+        }, 2300);
+      }
+
+      function copyTextSafe(text, successMsg) {
+        const fallback = () => {
+          const ta = document.createElement("textarea");
+          ta.value = text;
+          ta.setAttribute("readonly", "");
+          ta.style.position = "fixed";
+          ta.style.opacity = "0";
+          document.body.appendChild(ta);
+          ta.select();
+          try {
+            document.execCommand("copy");
+            showToast(successMsg || "Đã sao chép!");
+          } catch (err) {
+            showToast("Hãy bôi đen và sao chép thủ công.");
+          }
+          document.body.removeChild(ta);
+        };
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(
+            () => showToast(successMsg || "Đã sao chép!"),
+            fallback
+          );
+        } else {
+          fallback();
+        }
+      }
+
+      function getWebhookUrl() {
+        try {
+          return (localStorage.getItem(STORAGE_KEYS.webhookUrl) || "").trim();
+        } catch (err) {
+          return "";
+        }
+      }
+
+      function setWebhookUrl(url) {
+        try {
+          if (url) {
+            localStorage.setItem(STORAGE_KEYS.webhookUrl, url.trim());
+          } else {
+            localStorage.removeItem(STORAGE_KEYS.webhookUrl);
+          }
+        } catch (err) {}
+        updateSheetStatusBadge();
+      }
+
+      function updateSheetStatusBadge() {
+        const url = getWebhookUrl();
+        if (url) {
+          sheetStatusChipEl.textContent = "✓ Đã liên kết Google Sheet";
+          sheetStatusChipEl.classList.add("is-linked");
+        } else {
+          sheetStatusChipEl.textContent = "Chưa liên kết Google Sheet";
+          sheetStatusChipEl.classList.remove("is-linked");
+        }
+      }
+
+      function getLocalSubmissions() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEYS.submissions);
+          const arr = raw ? JSON.parse(raw) : [];
+          return Array.isArray(arr) ? arr : [];
+        } catch (err) {
+          return [];
+        }
+      }
+
+      function saveLocalSubmission(payload) {
+        try {
+          const arr = getLocalSubmissions();
+          arr.push(payload);
+          localStorage.setItem(STORAGE_KEYS.submissions, JSON.stringify(arr));
+        } catch (err) {}
+        refreshLocalCountLabel();
+      }
+
+      function refreshLocalCountLabel() {
+        const count = getLocalSubmissions().length;
+        localSubmissionsCountEl.textContent = "Đã lưu cục bộ trên máy: " + count + " bản ghi";
+      }
+
+      /* =====================================================================
+         TẠO GIAO DIỆN 6 NHÓM SỞ THÍCH & 3 KHỐI NGHỀ NGHIỆP (MỖI NGHỀ 4 Ý)
+         ===================================================================== */
+      function buildInterestsUI() {
+        interestsGridEl.innerHTML = "";
+        INTEREST_GROUPS.forEach((label, idx) => {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "interest-tile";
+          btn.setAttribute("aria-pressed", "false");
+          btn.setAttribute("data-interest-idx", String(idx));
+
+          const box = document.createElement("span");
+          box.className = "interest-check-box";
+          box.setAttribute("aria-hidden", "true");
+
+          const textSpan = document.createElement("span");
+          textSpan.className = "interest-label-txt";
+          textSpan.textContent = label;
+
+          btn.appendChild(box);
+          btn.appendChild(textSpan);
+
+          btn.addEventListener("click", () => toggleInterest(idx));
+          interestsGridEl.appendChild(btn);
+        });
+      }
+
+      function toggleInterest(idx) {
+        const label = INTEREST_GROUPS[idx];
+        if (!label) return;
+
+        const existingPos = state.selectedInterests.indexOf(label);
+        if (existingPos !== -1) {
+          state.selectedInterests.splice(existingPos, 1);
+          renderInterestsUI();
+          saveDraft();
+          updateProgressCounter();
+          return;
+        }
+
+        // Chặn chọn quá 2 nhóm sở thích với thông báo rõ ràng
+        if (state.selectedInterests.length >= 2) {
+          showToast("Chỉ chọn đúng 2 nhóm sở thích! Hãy bỏ chọn 1 nhóm trước khi chọn nhóm khác.");
+          return;
+        }
+
+        state.selectedInterests.push(label);
+        renderInterestsUI();
+        saveDraft();
+        updateProgressCounter();
+      }
+
+      function renderInterestsUI() {
+        const count = state.selectedInterests.length;
+        interestCounterEl.textContent = "Đã chọn: " + count + " / 2";
+        interestCounterEl.classList.toggle("is-exact", count === 2);
+
+        const tiles = Array.from(interestsGridEl.querySelectorAll(".interest-tile"));
+        tiles.forEach((tile) => {
+          const idx = Number(tile.getAttribute("data-interest-idx"));
+          const label = INTEREST_GROUPS[idx];
+          const pos = state.selectedInterests.indexOf(label);
+          const isSel = pos !== -1;
+
+          tile.classList.toggle("is-selected", isSel);
+          tile.setAttribute("aria-pressed", String(isSel));
+          const box = tile.querySelector(".interest-check-box");
+          if (box) {
+            box.textContent = isSel ? String(pos + 1) : "";
+          }
+        });
+      }
+
+      function buildThreeCareersUI() {
+        careersContainerEl.innerHTML = "";
+        for (let i = 1; i <= 3; i++) {
+          const block = document.createElement("div");
+          block.className = "career-block";
+          block.id = "careerBlock-" + i;
+
+          const title = document.createElement("div");
+          title.className = "career-block-title";
+          title.textContent = "Nghề " + i;
+          block.appendChild(title);
+
+          const grid = document.createElement("div");
+          grid.className = "career-fields-grid";
+
+          const specs = [
+            {
+              key: "name",
+              label: "Tên nghề",
+              placeholder: "Ví dụ: Chuyên viên phân tích dữ liệu"
+            },
+            {
+              key: "reason",
+              label: "Lý do quan tâm",
+              placeholder: "Ví dụ: Thích làm việc với số liệu và tìm quy luật thực tế"
+            },
+            {
+              key: "skill",
+              label: "Một kỹ năng quan trọng cần có",
+              placeholder: "Ví dụ: Tư duy logic và đọc hiểu dữ liệu"
+            },
+            {
+              key: "aiSupport",
+              label: "AI có thể hỗ trợ nghề này như thế nào?",
+              placeholder: "Ví dụ: Hỗ trợ làm sạch dữ liệu nháp, viết công thức và tóm tắt biểu đồ"
+            }
+          ];
+
+          specs.forEach((spec) => {
+            const fg = document.createElement("div");
+            fg.className = "form-group";
+
+            const inputId = "career" + i + "_" + spec.key;
+            const lbl = document.createElement("label");
+            lbl.className = "form-label";
+            lbl.setAttribute("for", inputId);
+            lbl.innerHTML = spec.label + ' <span class="req-star">*</span>';
+
+            const inp = document.createElement("input");
+            inp.type = "text";
+            inp.id = inputId;
+            inp.className = "short-input career-input";
+            inp.setAttribute("data-career-idx", String(i));
+            inp.setAttribute("data-field-key", spec.key);
+            inp.placeholder = spec.placeholder;
+            inp.required = true;
+
+            fg.appendChild(lbl);
+            fg.appendChild(inp);
+            grid.appendChild(fg);
+          });
+
+          block.appendChild(grid);
+          careersContainerEl.appendChild(block);
+        }
+      }
+
+      /* =====================================================================
+         CẬP NHẬT PROMPT TỰ ĐỘNG ĐIỀN & ĐẾM TIẾN ĐỘ (16 MỤC BẮT BUỘC)
+         ===================================================================== */
+      function buildGeneratedPrompt() {
+        const interestFromHelper = helperInterestEl.value.trim();
+        const interestFromStep1 = state.selectedInterests
+          .map((s) => s.replace(/^Thích\s+/i, "").replace(/\.$/, ""))
+          .join(" và ");
+        const interestVal = interestFromHelper || interestFromStep1 || "[sở thích]";
+        const strengthVal = helperStrengthEl.value.trim() || "[điểm mạnh]";
+        const fieldVal = helperFieldEl.value.trim() || "[lĩnh vực]";
+
+        return PROMPT_TEMPLATE_RAW
+          .replace("[sở thích]", interestVal)
+          .replace("[điểm mạnh]", strengthVal)
+          .replace("[lĩnh vực]", fieldVal);
+      }
+
+      function renderGeneratedPrompt() {
+        generatedPromptPreviewEl.textContent = buildGeneratedPrompt();
+      }
+
+      function getCareerValues(idx) {
+        return {
+          name: (document.getElementById("career" + idx + "_name").value || "").trim(),
+          reason: (document.getElementById("career" + idx + "_reason").value || "").trim(),
+          skill: (document.getElementById("career" + idx + "_skill").value || "").trim(),
+          aiSupport: (document.getElementById("career" + idx + "_aiSupport").value || "").trim()
+        };
+      }
+
+      function updateProgressCounter() {
+        // Tổng 16 mục bắt buộc:
+        // 3 thông tin HS + 2 sở thích + 1 câu trả lời ngắn Bước 2 + (3 nghề * 3 trường cốt lõi hoặc đủ 12 trường)
+        // Ở đây đếm đủ 16 điều kiện bắt buộc:
+        // 1. Họ tên, 2. Lớp, 3. Ngày sinh,
+        // 4. Chọn sở thích thứ 1, 5. Chọn sở thích thứ 2,
+        // 6. Câu trả lời ngắn Bước 2,
+        // 7..18. 12 câu trả lời ngắn ở Bước 3 (3 nghề x 4 mục),
+        // 19. Bước tiếp theo của tôi -> tổng 19 mục bắt buộc.
+        let done = 0;
+        const total = 19;
+
+        if (studentNameEl.value.trim()) done += 1;
+        if (studentClassEl.value.trim()) done += 1;
+        if (studentDobEl.value.trim()) done += 1;
+
+        if (state.selectedInterests[0]) done += 1;
+        if (state.selectedInterests[1]) done += 1;
+
+        if (step2ShortAnswerEl.value.trim()) done += 1;
+
+        for (let i = 1; i <= 3; i++) {
+          const c = getCareerValues(i);
+          if (c.name) done += 1;
+          if (c.reason) done += 1;
+          if (c.skill) done += 1;
+          if (c.aiSupport) done += 1;
+        }
+
+        if (nextStepAnswerEl.value.trim()) done += 1;
+
+        progressCounterEl.textContent = "Hoàn thành: " + done + " / " + total + " mục bắt buộc";
+      }
+
+      /* =====================================================================
+         BẢN NHÁP CỤC BỘ (LOCALSTORAGE)
+         ===================================================================== */
+      function saveDraft() {
+        try {
+          const draft = {
+            fullName: studentNameEl.value,
+            className: studentClassEl.value,
+            dob: studentDobEl.value,
+            selectedInterests: state.selectedInterests,
+            helperInterest: helperInterestEl.value,
+            helperStrength: helperStrengthEl.value,
+            helperField: helperFieldEl.value,
+            step2ShortAnswer: step2ShortAnswerEl.value,
+            careers: [1, 2, 3].map((i) => getCareerValues(i)),
+            nextStep: nextStepAnswerEl.value
+          };
+          localStorage.setItem(STORAGE_KEYS.draft, JSON.stringify(draft));
+        } catch (err) {}
+      }
+
+      function restoreDraft() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEYS.draft);
+          if (!raw) return;
+          const d = JSON.parse(raw);
+          if (!d || typeof d !== "object") return;
+
+          if (typeof d.fullName === "string") studentNameEl.value = d.fullName;
+          if (typeof d.className === "string") studentClassEl.value = d.className;
+          if (typeof d.dob === "string") studentDobEl.value = d.dob;
+
+          if (Array.isArray(d.selectedInterests)) {
+            state.selectedInterests = d.selectedInterests
+              .filter((item) => INTEREST_GROUPS.includes(item))
+              .slice(0, 2);
+          }
+
+          if (typeof d.helperInterest === "string") helperInterestEl.value = d.helperInterest;
+          if (typeof d.helperStrength === "string") helperStrengthEl.value = d.helperStrength;
+          if (typeof d.helperField === "string") helperFieldEl.value = d.helperField;
+          if (typeof d.step2ShortAnswer === "string") step2ShortAnswerEl.value = d.step2ShortAnswer;
+
+          if (Array.isArray(d.careers)) {
+            [1, 2, 3].forEach((idx) => {
+              const item = d.careers[idx - 1];
+              if (!item) return;
+              if (typeof item.name === "string") document.getElementById("career" + idx + "_name").value = item.name;
+              if (typeof item.reason === "string") document.getElementById("career" + idx + "_reason").value = item.reason;
+              if (typeof item.skill === "string") document.getElementById("career" + idx + "_skill").value = item.skill;
+              if (typeof item.aiSupport === "string") document.getElementById("career" + idx + "_aiSupport").value = item.aiSupport;
+            });
+          }
+
+          if (typeof d.nextStep === "string") nextStepAnswerEl.value = d.nextStep;
+        } catch (err) {}
+      }
+
+      function clearDraftAndForm() {
+        try {
+          localStorage.removeItem(STORAGE_KEYS.draft);
+        } catch (err) {}
+        formEl.reset();
+        state.selectedInterests = [];
+        state.lastSubmittedPayload = null;
+        clearAllValidationStyles();
+        renderInterestsUI();
+        renderGeneratedPrompt();
+        updateProgressCounter();
+        resultMapSectionEl.classList.remove("visible");
+        showToast("Đã xóa bản nháp và làm mới biểu mẫu");
+      }
+
+      /* =====================================================================
+         KIỂM TRA HỢP LỆ CHẶT CHẼ TOÀN BỘ BIỂU MẪU
+         ===================================================================== */
+      function clearAllValidationStyles() {
+        document.querySelectorAll(".survey-card, .career-block").forEach((el) => {
+          el.classList.remove("has-error");
+        });
+        document.querySelectorAll(".field-error-msg").forEach((el) => {
+          el.textContent = "";
+          el.classList.remove("visible");
+        });
+        document.querySelectorAll(".text-input, .short-input").forEach((el) => {
+          el.classList.remove("input-invalid");
+        });
+      }
+
+      function showSectionError(cardEl, errEl, message, focusEl) {
+        if (cardEl) cardEl.classList.add("has-error");
+        if (errEl) {
+          errEl.textContent = message;
+          errEl.classList.add("visible");
+        }
+        if (focusEl && focusEl.classList) {
+          focusEl.classList.add("input-invalid");
+        }
+      }
+
+      function validateForm() {
+        clearAllValidationStyles();
+        let firstInvalidTarget = null;
+
+        const markFirst = (el) => {
+          if (!firstInvalidTarget && el) firstInvalidTarget = el;
+        };
+
+        // 1. Thông tin học sinh
+        const fullName = studentNameEl.value.trim();
+        const className = studentClassEl.value.trim();
+        const dob = studentDobEl.value.trim();
+
+        const missingStudentFields = [];
+        if (!fullName) {
+          studentNameEl.classList.add("input-invalid");
+          missingStudentFields.push("Họ và tên");
+          markFirst(studentNameEl);
+        }
+        if (!className) {
+          studentClassEl.classList.add("input-invalid");
+          missingStudentFields.push("Lớp");
+          markFirst(studentClassEl);
+        }
+        if (!dob) {
+          studentDobEl.classList.add("input-invalid");
+          missingStudentFields.push("Ngày sinh");
+          markFirst(studentDobEl);
+        }
+
+        if (missingStudentFields.length > 0) {
+          showSectionError(
+            document.getElementById("cardStudentInfo"),
+            document.getElementById("errStudentInfo"),
+            "Vui lòng nhập đầy đủ thông tin bắt buộc: " + missingStudentFields.join(", ") + "."
+          );
+        }
+
+        // 2. Bước 1: bắt buộc chọn đúng 2 nhóm sở thích
+        if (state.selectedInterests.length !== 2) {
+          showSectionError(
+            document.getElementById("cardStep1"),
+            document.getElementById("errStep1"),
+            "Vui lòng chọn đúng 2 nhóm sở thích (hiện mới chọn " + state.selectedInterests.length + " / 2).",
+            interestsGridEl.querySelector(".interest-tile")
+          );
+          markFirst(document.getElementById("cardStep1"));
+        }
+
+        // 3. Bước 2: bắt buộc câu trả lời ngắn
+        const step2Ans = step2ShortAnswerEl.value.trim();
+        if (!step2Ans) {
+          showSectionError(
+            document.getElementById("cardStep2"),
+            document.getElementById("errStep2"),
+            "Vui lòng nhập câu trả lời ngắn của em ở Bước 2.",
+            step2ShortAnswerEl
+          );
+          markFirst(step2ShortAnswerEl);
+        }
+
+        // 4. Bước 3: 3 nghề, mỗi nghề đủ 4 câu trả lời ngắn
+        const careers = [1, 2, 3].map((idx) => getCareerValues(idx));
+        const incompleteCareers = [];
+
+        careers.forEach((c, index) => {
+          const num = index + 1;
+          const block = document.getElementById("careerBlock-" + num);
+          const missing = [];
+
+          if (!c.name) {
+            document.getElementById("career" + num + "_name").classList.add("input-invalid");
+            missing.push("Tên nghề");
+            markFirst(document.getElementById("career" + num + "_name"));
+          }
+          if (!c.reason) {
+            document.getElementById("career" + num + "_reason").classList.add("input-invalid");
+            missing.push("Lý do quan tâm");
+            markFirst(document.getElementById("career" + num + "_reason"));
+          }
+          if (!c.skill) {
+            document.getElementById("career" + num + "_skill").classList.add("input-invalid");
+            missing.push("Kỹ năng quan trọng");
+            markFirst(document.getElementById("career" + num + "_skill"));
+          }
+          if (!c.aiSupport) {
+            document.getElementById("career" + num + "_aiSupport").classList.add("input-invalid");
+            missing.push("Cách AI hỗ trợ");
+            markFirst(document.getElementById("career" + num + "_aiSupport"));
+          }
+
+          if (missing.length > 0) {
+            block.classList.add("has-error");
+            incompleteCareers.push("Nghề " + num + " (thiếu: " + missing.join(", ") + ")");
+          }
+        });
+
+        if (incompleteCareers.length > 0) {
+          showSectionError(
+            document.getElementById("cardStep3"),
+            document.getElementById("errStep3"),
+            "Vui lòng nhập đủ 4 mục ngắn gọn cho cả 3 nghề — " + incompleteCareers.join("; ") + "."
+          );
+          markFirst(document.getElementById("cardStep3"));
+        }
+
+        // 5. Bước tiếp theo của tôi
+        const nextStep = nextStepAnswerEl.value.trim();
+        if (!nextStep) {
+          showSectionError(
+            document.getElementById("cardNextStep"),
+            document.getElementById("errNextStep"),
+            "Vui lòng nhập câu trả lời ngắn cho mục 'Bước tiếp theo của tôi'.",
+            nextStepAnswerEl
+          );
+          markFirst(nextStepAnswerEl);
+        }
+
+        if (firstInvalidTarget) {
+          firstInvalidTarget.scrollIntoView({ behavior: "smooth", block: "center" });
+          if (typeof firstInvalidTarget.focus === "function" && !firstInvalidTarget.classList.contains("survey-card")) {
+            firstInvalidTarget.focus();
+          }
+          showToast("Còn mục bắt buộc chưa hoàn thiện. Hãy kiểm tra phần viền đỏ!");
+          return null;
+        }
+
+        return {
+          activity: "Hoạt động 5 – Bản đồ 3 nghề quan tâm",
+          school: "Trường THPT Lương Khánh Thiện & TCCN Hải Phòng",
+          timestamp: new Date().toISOString(),
+          fullName: fullName,
+          className: className,
+          dob: dob,
+          selectedInterests: state.selectedInterests.slice(0, 2),
+          promptInputs: {
+            interest: helperInterestEl.value.trim(),
+            strength: helperStrengthEl.value.trim(),
+            field: helperFieldEl.value.trim()
+          },
+          generatedPrompt: buildGeneratedPrompt(),
+          step2ShortAnswer: step2Ans,
+          careers: careers,
+          nextStep: nextStep
+        };
+      }
+
+      /* =====================================================================
+         GỬI DỮ LIỆU TỚI GOOGLE APPS SCRIPT & HIỂN THỊ BẢN ĐỒ XÁC NHẬN
+         ===================================================================== */
+      async function handleFormSubmit(e) {
+        e.preventDefault();
+        const payload = validateForm();
+        if (!payload) return;
+
+        state.lastSubmittedPayload = payload;
+        saveLocalSubmission(payload);
+
+        const webhookUrl = getWebhookUrl();
+        let sentToSheet = false;
+
+        if (webhookUrl) {
+          try {
+            await fetch(webhookUrl, {
+              method: "POST",
+              mode: "no-cors",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify(payload)
+            });
+            sentToSheet = true;
+          } catch (err) {
+            sentToSheet = false;
+          }
+        }
+
+        renderResultMapCard(payload, webhookUrl, sentToSheet);
+        resultMapSectionEl.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      function renderResultMapCard(payload, webhookUrl, sentToSheet) {
+        resultMapSectionEl.classList.add("visible");
+
+        if (webhookUrl && sentToSheet) {
+          submitNoticeBannerEl.className = "notice-banner success";
+          submitNoticeBannerEl.innerHTML =
+            "<span>✓ Đã gửi dữ liệu lên Google Sheet và lưu bản sao trên trình duyệt!</span>";
+        } else if (webhookUrl && !sentToSheet) {
+          submitNoticeBannerEl.className = "notice-banner warn";
+          submitNoticeBannerEl.innerHTML =
+            "<span>⚠ Gửi tới URL Google Sheet gặp sự cố mạng; dữ liệu đã được lưu cục bộ trên máy.</span>" +
+            '<button type="button" class="btn btn-outline btn-sm" onclick="window.__openSheetModal()">Kiểm tra cấu hình</button>';
+        } else {
+          submitNoticeBannerEl.className = "notice-banner warn";
+          submitNoticeBannerEl.innerHTML =
+            "<span>ℹ Chưa cấu hình link Google Sheet (Apps Script Web App URL). Bản đồ dưới đây đã được lưu cục bộ để GV/MC kiểm tra và xuất CSV.</span>" +
+            '<button type="button" class="btn btn-amber btn-sm" onclick="window.__openSheetModal()">⚙ Cấu hình Google Sheet</button>';
+        }
+
+        resultStudentMetaEl.textContent =
+          "Học sinh: " +
+          payload.fullName +
+          " • Lớp: " +
+          payload.className +
+          " • Ngày sinh: " +
+          payload.dob;
+
+        resultInterestsLineEl.textContent =
+          "2 nhóm sở thích đã chọn: " + payload.selectedInterests.join(" | ");
+
+        resultCareersGridEl.innerHTML = "";
+        payload.careers.forEach((c, idx) => {
+          const card = document.createElement("div");
+          card.className = "map-career-card";
+          card.innerHTML =
+            '<div class="map-career-idx">Nghề 0' + (idx + 1) + "</div>" +
+            '<div class="map-career-name">' + escapeHtml(c.name) + "</div>" +
+            '<div class="map-career-row"><strong>Lý do quan tâm:</strong> ' + escapeHtml(c.reason) + "</div>" +
+            '<div class="map-career-row"><strong>Kỹ năng quan trọng:</strong> ' + escapeHtml(c.skill) + "</div>" +
+            '<div class="map-career-row"><strong>AI hỗ trợ:</strong> ' + escapeHtml(c.aiSupport) + "</div>";
+          resultCareersGridEl.appendChild(card);
+        });
+
+        resultNextStepBoxEl.innerHTML =
+          "<strong>Bước tiếp theo của tôi:</strong> " + escapeHtml(payload.nextStep) +
+          '<div style="margin-top: 8px; font-size: 15px; font-weight: 600; color: var(--ink-secondary);">' +
+          "<strong>Câu trả lời ngắn Bước 2:</strong> " + escapeHtml(payload.step2ShortAnswer) +
+          "</div>";
+
+        rawPayloadBoxEl.textContent = JSON.stringify(payload, null, 2);
+      }
+
+      function escapeHtml(str) {
+        return String(str || "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+
+      /* =====================================================================
+         XUẤT CSV CÁC BÀI ĐÃ LƯU CỤC BỘ
+         ===================================================================== */
+      function exportSubmissionsCsv() {
+        const list = getLocalSubmissions();
+        if (list.length === 0) {
+          showToast("Chưa có bài nộp nào được lưu cục bộ để xuất CSV.");
+          return;
+        }
+
+        const headers = [
+          "Timestamp",
+          "HoVaTen",
+          "Lop",
+          "NgaySinh",
+          "SoThich1",
+          "SoThich2",
+          "TraLoiNganBuoc2",
+          "Nghe1_Ten",
+          "Nghe1_LyDo",
+          "Nghe1_KyNang",
+          "Nghe1_AIHoTro",
+          "Nghe2_Ten",
+          "Nghe2_LyDo",
+          "Nghe2_KyNang",
+          "Nghe2_AIHoTro",
+          "Nghe3_Ten",
+          "Nghe3_LyDo",
+          "Nghe3_KyNang",
+          "Nghe3_AIHoTro",
+          "BuocTiepTheoCuaToi"
+        ];
+
+        const esc = (v) => {
+          const s = String(v == null ? "" : v).replace(/"/g, '""');
+          return '"' + s + '"';
+        };
+
+        const rows = list.map((item) => {
+          const ints = item.selectedInterests || [];
+          const cs = item.careers || [{}, {}, {}];
+          return [
+            item.timestamp,
+            item.fullName,
+            item.className,
+            item.dob,
+            ints[0] || "",
+            ints[1] || "",
+            item.step2ShortAnswer,
+            cs[0] ? cs[0].name : "",
+            cs[0] ? cs[0].reason : "",
+            cs[0] ? cs[0].skill : "",
+            cs[0] ? cs[0].aiSupport : "",
+            cs[1] ? cs[1].name : "",
+            cs[1] ? cs[1].reason : "",
+            cs[1] ? cs[1].skill : "",
+            cs[1] ? cs[1].aiSupport : "",
+            cs[2] ? cs[2].name : "",
+            cs[2] ? cs[2].reason : "",
+            cs[2] ? cs[2].skill : "",
+            cs[2] ? cs[2].aiSupport : "",
+            item.nextStep
+          ]
+            .map(esc)
+            .join(",");
+        });
+
+        const csvContent = "\uFEFF" + [headers.map(esc).join(","), ...rows].join("\n");
+        const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "ban_do_3_nghe_quan_tam.csv";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showToast("Đã tải file CSV (" + list.length + " bản ghi)");
+      }
+
+      /* =====================================================================
+         MODAL CẤU HÌNH GOOGLE SHEET
+         ===================================================================== */
+      function openSheetModal() {
+        appsScriptUrlInputEl.value = getWebhookUrl();
+        refreshLocalCountLabel();
+        sheetConfigModalEl.classList.add("open");
+      }
+
+      function closeSheetModal() {
+        sheetConfigModalEl.classList.remove("open");
+      }
+
+      window.__openSheetModal = openSheetModal;
+
+      /* =====================================================================
+         GẮN SỰ KIỆN
+         ===================================================================== */
+      appsScriptCodeBlockEl.textContent = APPS_SCRIPT_SAMPLE;
+
+      formEl.addEventListener("submit", handleFormSubmit);
+
+      [
+        studentNameEl,
+        studentClassEl,
+        studentDobEl,
+        helperInterestEl,
+        helperStrengthEl,
+        helperFieldEl,
+        step2ShortAnswerEl,
+        nextStepAnswerEl
+      ].forEach((input) => {
+        input.addEventListener("input", () => {
+          input.classList.remove("input-invalid");
+          renderGeneratedPrompt();
+          updateProgressCounter();
+          saveDraft();
+        });
+      });
+
+      document.getElementById("btnCopyTemplatePrompt").addEventListener("click", () => {
+        copyTextSafe(PROMPT_TEMPLATE_RAW, "Đã sao chép Prompt mẫu!");
+      });
+
+      document.getElementById("btnCopyGeneratedPrompt").addEventListener("click", () => {
+        copyTextSafe(buildGeneratedPrompt(), "Đã sao chép Prompt đã điền!");
+      });
+
+      document.getElementById("btnClearDraft").addEventListener("click", clearDraftAndForm);
+
+      document.getElementById("btnNewOrEditMap").addEventListener("click", () => {
+        resultMapSectionEl.classList.remove("visible");
+        studentNameEl.scrollIntoView({ behavior: "smooth", block: "center" });
+        studentNameEl.focus();
+      });
+
+      document.getElementById("btnToggleRawPayload").addEventListener("click", () => {
+        rawPayloadBoxEl.classList.toggle("visible");
+      });
+
+      document.getElementById("btnCopyPayloadJson").addEventListener("click", () => {
+        if (!state.lastSubmittedPayload) {
+          showToast("Chưa có dữ liệu khảo sát nào được gửi.");
+          return;
+        }
+        copyTextSafe(JSON.stringify(state.lastSubmittedPayload, null, 2), "Đã sao chép dữ liệu JSON!");
+      });
+
+      document.getElementById("btnOpenSheetModal").addEventListener("click", openSheetModal);
+      document.getElementById("btnCloseSheetModal").addEventListener("click", closeSheetModal);
+      sheetConfigModalEl.addEventListener("click", (e) => {
+        if (e.target === sheetConfigModalEl) closeSheetModal();
+      });
+
+      document.getElementById("btnSaveWebhookUrl").addEventListener("click", () => {
+        const val = appsScriptUrlInputEl.value.trim();
+        if (val && !/^https:\/\/script\.google\.com\/macros\/s\/.+/i.test(val)) {
+          showToast("Vui lòng nhập đúng định dạng link Google Apps Script Web App (.../exec).");
+          return;
+        }
+        setWebhookUrl(val);
+        showToast(val ? "Đã lưu link Google Apps Script!" : "Đã xóa link Google Sheet.");
+      });
+
+      document.getElementById("btnClearWebhookUrl").addEventListener("click", () => {
+        appsScriptUrlInputEl.value = "";
+        setWebhookUrl("");
+        showToast("Đã xóa URL Google Sheet");
+      });
+
+      document.getElementById("btnCopyAppsScript").addEventListener("click", () => {
+        copyTextSafe(APPS_SCRIPT_SAMPLE, "Đã sao chép mã Google Apps Script!");
+      });
+
+      document.getElementById("btnExportCsv").addEventListener("click", exportSubmissionsCsv);
+
+      document.getElementById("btnClearLocalHistory").addEventListener("click", () => {
+        try {
+          localStorage.removeItem(STORAGE_KEYS.submissions);
+        } catch (err) {}
+        refreshLocalCountLabel();
+        showToast("Đã xóa lịch sử nộp bài lưu cục bộ trên máy này");
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && sheetConfigModalEl.classList.contains("open")) {
+          closeSheetModal();
+        }
+      });
+
+      // Khởi tạo giao diện
+      buildInterestsUI();
+      buildThreeCareersUI();
+
+      // Gắn listener cho các ô nhập của 3 nghề sau khi dựng xong DOM
+      document.querySelectorAll(".career-input").forEach((inp) => {
+        inp.addEventListener("input", () => {
+          inp.classList.remove("input-invalid");
+          const idx = inp.getAttribute("data-career-idx");
+          const block = document.getElementById("careerBlock-" + idx);
+          if (block) block.classList.remove("has-error");
+          updateProgressCounter();
+          saveDraft();
+        });
+      });
+
+      restoreDraft();
+      renderInterestsUI();
+      renderGeneratedPrompt();
+      updateProgressCounter();
+      updateSheetStatusBadge();
+      refreshLocalCountLabel();
+    })();
+  </script>
+</body>
+</html>
